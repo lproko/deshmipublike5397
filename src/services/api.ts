@@ -6,6 +6,10 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  // Security: Prevent DoS attack through large response payloads
+  maxContentLength: 10 * 1024 * 1024, // 10MB max response size
+  maxBodyLength: 10 * 1024 * 1024, // 10MB max request body size
+  timeout: 30000, // 30 second timeout to prevent hanging requests
 });
 
 // Intercept requests to simulate API calls with localStorage
